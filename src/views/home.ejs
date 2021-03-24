@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestionnaire de promotions</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>My to-do lists</h1>
+
+  <form action="/listes" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" />
+    <input type="submit" />
+  </form>
+
+
+  <ul class="list-items">
+    <% listes.forEach((liste) => { %>
+      <li class="list-item" ><a href="<%= `/listes/${liste.id}` %>"><%= liste.name %></a></li>
+    <% }) %>
+  </ul>
+
+  <script>
+    const list_item = document.querySelectorAll("li.list-item");
+    list_item.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            let list_id = item.getAttribute('data-key');
+            console.log(list_id);
+        })
+    });
+  </script>
+</body>
+</html>

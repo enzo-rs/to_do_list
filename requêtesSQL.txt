@@ -1,0 +1,19 @@
+create table todolist (
+id INT(6) AUTO_INCREMENT, 
+name VARCHAR(300) NOT NULL, 
+primary key(id));
+
+INSERT INTO todolist (name) VALUES("Monday list");
+
+CREATE TABLE tasks(
+id_tasks INT(6) AUTO_INCREMENT,
+description VARCHAR(300) NOT NULL,
+date VARCHAR(10) NOT NULL, 
+todolist INT,
+PRIMARY KEY(id_tasks), 
+fini TINYINT DEFAULT 0,
+FOREIGN KEY (todolist) REFERENCES todolist(id));
+
+INSERT INTO tasks (description, date, todolist) VALUES ("Coder un site", "24/03/2021", 1);
+
+SELECT id as list, description, date FROM tasks JOIN todolist ON todolist = id WHERE id = 1;
