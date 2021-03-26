@@ -21,7 +21,7 @@ class Liste {
     }
 
     static getOne(id, callback) {
-        db.query(`SELECT id , name, description, date FROM tasks JOIN todolist ON todolist = id WHERE id = ${id};`, (error, result) => {
+        db.query(`SELECT id, id_tasks, name, description, date FROM tasks JOIN todolist ON todolist = id WHERE id = ${id};`, (error, result) => {
             if (error) {
                 console.log("error: ", error);
                 callback(error, null);
@@ -41,6 +41,29 @@ class Liste {
                 return;
             }
 
+            callback(null, result);
+        })
+    }
+
+    static getTask(id, callback) {
+        db.query(`SELECT * FROM tasks JOIN todolist ON todolist = id WHERE id_tasks = ${id};`, (error, result) => {
+            if (error) {
+                console.log("error: ", error);
+                callback(error, null);
+                return;
+            }
+
+            callback(null, result);
+        })
+    }
+
+    static putDescription(id, new_value, callback) {
+        db.query(`UPDATE tasks SET description = "${new_value}" WHERE id_tasks = ${id};`, (error, result) => {
+            if (error) {
+                console.log("error: ", error);
+                callback(error, null);
+                return;
+            }
             callback(null, result);
         })
     }

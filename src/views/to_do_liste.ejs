@@ -10,8 +10,9 @@
     <h1><%= result[0].name  %></h1>
 
     <ul>
+        
         <% result.forEach((el) => { %>
-            <li class="list-item" ><%= el.description %></li>
+            <li class="list-item" ><a href="<%= `/task/${el.id_tasks}` %>"><%= el.description %></a></li>
         <% }) %>
     </ul>
 </body>
